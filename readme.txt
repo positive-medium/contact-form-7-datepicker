@@ -1,9 +1,9 @@
 === Plugin Name ===
-Contributors: shockware, baden03, szepe.viktor, xsonic, sanidm, imelgrat
+Contributors: shockware, baden03, szepe.viktor, xsonic, sanidm, imelgrat, positive-medium
 Tags: wordpress, datepicker, timepicker, date, time, calendar, contact form 7, forms, jqueryui
 Requires at least: 3.6.1
 Tested up to: 4.7.1
-Stable tag: 2.6.0
+Stable tag: 2.6.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,6 +32,11 @@ You can [open an issue on github](https://github.com/relu/contact-form-7-datepic
 3. Date field generator
 
 == Changelog ==
+
+= 2.6.1 =
+* Fix PHP 8.0 compatibility by replacing deprecated create_function()
+* Add GitHub Plugin URI for updater compatibility
+* Add automated release workflow
 
 = 2.6.0 =
 * Compatibility with CF7 4.6, replace deprecated calls (imelgrat)

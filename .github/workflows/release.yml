@@ -1,0 +1,51 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Get tag name
+      id: tag
+      run: echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+      
+    - name: Create plugin directory
+      run: |
+        mkdir -p contact-form-7-datepicker
+        cp -r * contact-form-7-datepicker/ 2>/dev/null || true
+        rm -rf contact-form-7-datepicker/.git
+        rm -rf contact-form-7-datepicker/.github
+        rm -rf contact-form-7-datepicker/contact-form-7-datepicker
+        
+    - name: Create ZIP file
+      run: |
+        zip -r contact-form-7-datepicker-${{ steps.tag.outputs.tag }}.zip contact-form-7-datepicker/
+        
+    - name: Create Release
+      uses: actions/create-release@v1
+      id: create_release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.tag.outputs.tag }}
+        release_name: Release ${{ steps.tag.outputs.tag }}
+        draft: false
+        prerelease: false
+        
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./contact-form-7-datepicker-${{ steps.tag.outputs.tag }}.zip
+        asset_name: contact-form-7-datepicker-${{ steps.tag.outputs.tag }}.zip
+        asset_content_type: application/zip
