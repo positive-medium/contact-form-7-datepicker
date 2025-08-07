@@ -15,7 +15,7 @@ jobs:
       
     - name: Get tag name
       id: tag
-      run: echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+      run: echo "tag=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
       
     - name: Create plugin directory
       run: |

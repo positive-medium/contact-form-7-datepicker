@@ -1,7 +1,7 @@
 <?php
 /**
 Plugin Name: Contact Form 7 Datepicker
-Plugin URI: https://github.com/relu/contact-form-7-datepicker/
+Plugin URI: https://github.com/positive-medium/contact-form-7-datepicker
 GitHub Plugin URI: positive-medium/contact-form-7-datepicker
 Description: Easily add a date field using jQuery UI's datepicker to your CF7 forms. This plugin depends on Contact Form 7.
 Author: Aurel Canciu
